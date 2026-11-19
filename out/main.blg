@@ -1,0 +1,14 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'out/main.blg'
+[41] biber-darwin:342> INFO - === Wed Nov 18, 2026, 16:28:24
+[50] Biber.pm:421> INFO - Reading 'out/main.bcf'
+[104] Biber.pm:1002> INFO - Found 15 citekeys in bib section 0
+[114] Biber.pm:4487> INFO - Processing section 0
+[119] Biber.pm:4678> INFO - Looking for bibtex file 'literatura.bib' for section 0
+[120] bibtex.pm:1713> INFO - LaTeX decoding ...
+[127] bibtex.pm:1519> INFO - Found BibTeX data source 'literatura.bib'
+[180] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[180] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[180] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'sk-SK'
+[189] bbl.pm:676> INFO - Writing 'out/main.bbl' with encoding 'UTF-8'
+[193] bbl.pm:779> INFO - Output to out/main.bbl

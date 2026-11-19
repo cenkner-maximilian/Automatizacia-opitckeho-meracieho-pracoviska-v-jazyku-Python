@@ -1,0 +1,260 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{xurl}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[left=2.5cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[backend=biber, style=iso-numeric, sorting=nty]{biblatex}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{acro}
+\begin{comment}
+\DeclareAcronym{}{
+    short={},
+    long={}
+}
+\end{comment}
+
+\DeclareAcronym{sav}{
+    short={SAV},
+    long={Slovenská Akadémia Vied}
+}
+
+\DeclareAcronym{scpi}{
+  short = {SCPI},
+  long  = {Standard Commands for Programmable Instruments}
+}
+
+\DeclareAcronym{rs-232}{
+    short = {RS-232},
+    long = {Recommended Standard 232}
+}
+
+\DeclareAcronym{gpib}{
+  short = {GPIB},
+  long  = {General Purpose Interface Bus}
+}
+
+\DeclareAcronym{ldls}{
+  short = {LDLS},
+  long  = {Laser-Driven Light Source®}
+}
+
+\DeclareAcronym{uv-c}{
+    short= {UV-C},
+    long= {Germicídne UV}
+}
+
+\DeclareAcronym{bnc}{
+    short={BNC},
+    long={Bayonet Neill–Concelman}
+}
+
+\DeclareAcronym{usb}{
+    short={USB},
+    long={Universal Serial Bus}
+}
+
+\DeclareAcronym{dll}{
+    short={DLL},
+    long={Dynamic-link library}
+}
+
+\DeclareAcronym{xml-rpc}{
+    short={XML-RPC},
+    long={Extensible Markup Language Remote Procedure Call}
+}
+
+\DeclareAcronym{mds}{
+    short={MDS},
+    long={Multi-Device Synchronization}
+}
+
+\addbibresource{literatura.bib}
+
+\onehalfspacing
+
+\usepackage{csquotes}
+\begin{document}
+
+\begin{titlepage}
+    % Názov školy alebo inštitúcie (veľkosť 14, tučné)
+    \begin{center}
+        {\fontsize{14pt}{18pt}\selectfont \textbf{Elektrotechnický ústav SAV, v.v.i., Dúbravská cesta 9, 841 04 Bratislava}}
+        
+        \vspace{10cm}
+        
+        % Názov práce v strede strany, tučným písmom (veľkosť 16)
+        {\fontsize{16pt}{20pt}\selectfont \textbf{Automatizácia optického meracieho pracoviska v jazyku Python}}
+        
+        \vspace{1cm}
+        % Označenie práce (veľkosť 12)
+        {\fontsize{12pt}{16pt}\selectfont Stredoškolská odborná činnosť}
+    \end{center}
+
+    \vspace*{\fill}
+
+    % Miesto vľavo dole, meno a trieda vpravo dole (veľkosť 12)
+    \noindent
+    \begin{minipage}[t]{0.45\textwidth}
+        \fontsize{12pt}{16pt}\selectfont
+        Bratislava \\
+        2026/2027
+    \end{minipage}%
+    \begin{minipage}[t]{0.55\textwidth}
+        \raggedleft
+        \fontsize{12pt}{16pt}\selectfont
+        Maximilián Cenkner\\
+        III.D
+    \end{minipage}
+
+\end{titlepage}
+
+% -- POĎAKOVANIE --
+\newpage
+\vspace*{\fill}
+\noindent\textbf{Poďakovanie}
+
+\noindent Rád by som na tomto mieste poďakoval vedúcemu laboratória a tohto meracieho projektu na Elektrotechnickom ústave SAV, v.v.i., Ing. Mariánovi Vargovi, PhD. za realizáciu optickej stránky pracoviska a za fyzikálne a iné konzultácie spojené s pracoviskom a vypracovávaním tejto odbornej práce. Zároveň by som rád poďakoval Ing. Michalovi Sobotovi, PhD. za odborné konzultácie spojené s meraniami.
+\vspace{2cm}
+\thispagestyle{empty}
+
+
+% -- OBSAH --
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+% -- ZOZNAM SKRATIEK A ZNAČIEK --
+\section*{Zoznam skratiek a značiek}
+\addcontentsline{toc}{section}{Zoznam skratiek a značiek}
+\printacronyms[%
+  heading=none, % Vypne podnadpisy, ak ich nechceš
+  sort=true     % Automaticky zoradi skratky abecedne
+]
+\newpage
+
+\section{Abstrakt}
+
+% Kľúčové slová patria tesne pod abstrakt
+\vspace{1cm}
+\noindent\textbf{Kľúčové slová:} % Tu neskôr doplníš 3-5 kľúčových slov, napr. automatizácia, Python, optické meranie...
+\newpage
+\section{Úvod}
+
+% MERACIE PRÍSTROJE
+\begin{comment}
+Identifikácia a primárna funkcia
+
+Kľúčové technické parametre: Rozsahy, citlivosť, presnosť alebo iné fyzikálne limity. Uvádzaj len tie, ktoré sú relevantné pre tvoje meranie (napr. rozsah od 20 mA po 2 nA). Nemusíš prepisovať celý datasheet.
+Komunikačné rozhranie: Keďže je tvoja SOČ zameraná na automatizáciu v Pythone, pri každom prístroji povinne uveď, cez aký port (USB, GPIB, RS-232, Ethernet) a akým jazykom/protokolom (SCPI príkazy, špecifické API výrobcu) s ním počítač komunikuje.
+
+Úloha na pracovisku: Jasné prepojenie s experimentom. Prečo tam ten prístroj je a čo konkrétne robí?
+\end{comment}
+
+\newpage
+\section{Použité meracie zariadenia}
+\subsection{KEITHLEY 6487 Picoammeter/Voltage Source}
+KEITHLEY 6487 Picoammeter/Voltage Source je pikoampérmeter s vysokým rozlíšením,
+programovateľný s využitím \ac{scpi} príkazov cez port \ac{gpib} alebo \ac{rs-232}. Uvedený model 6487 dokáže merať prúd v 8 rôznych meracích rozsahoch, a to od 20~mA až po 2~nA. Pri meraniach sme použili tento prístroj aj ako zdroj $\pm 500$~V DC\footfullcite[s. 10]{keithley6487}.
+
+Na pracovisku je prístroj pripojený k počítaču cez rozhranie \ac{gpib} pomocou prevodníka \ac{gpib}--\acs{usb} od firmy Agilent (Keysight), ktorý vyžaduje inštaláciu ovládačov Keysight IO Libraries Suite. V jazyku Python s prístrojom komunikujeme pomocou knižnice PyVISA\footfullcite{pyvisa}, cez ktorú odosielame \ac{scpi} príkazy a čítame namerané hodnoty. Pri meraní voltampérovej charakteristiky prístroj nastavuje napätie na vzorke a zároveň meria prúd, pri meraní responzivity slúži ako zdroj konštantného predpätia vzorky.
+
+\subsection{Energetiq Fiber Coupled Laser-Driven Light Source EQ-99X-FC-S}
+EQ-99X-FC-S je širokopásmový zdroj svetla s výstupnou optickou cestou a technológiou \ac{ldls}, ktorá pomocou zaostrených laserových lúčov vytvára plazmu, ktorá je zdrojom svetla. Svetelná šírka pásma vychádzajúca zo zdroja je v rozmedzí od 190~nm do 3500~nm, čo vyhovuje nášmu cieľu merať v rozmedzí \ac{uv-c} na svetelnom spektre. S prístrojom nie je možné komunikovať cez rozhranie PC\footfullcite{ldls}.
+
+\newpage
+\subsection{Monochromator LOT Quantum Design MSH-300M}
+MSH-300 je monochromátor typu Czerny-Turner s ohniskovou vzdialenosťou 300~mm a 3 difrakčnými mriežkami slúžiacimi pre vyfiltrovanie zadanej vlnovej dĺžky. Monochromátor má 2 štrbiny slúžiace ako výstup a vstup pre svetlo, ktoré sú nastaviteľné s minimálnou a maximálnou šírkou od 10~\textmu m až do 10~mm. S prístrojom je možné komunikovať cez rozhranie \ac{usb}, a to pomocou \ac{dll} knižnice poskytnutej výrobcom\footfullcite{msh300m}.
+
+Náš monochromátor je osadený mriežkami s hustotou 1800, 1200 a 600 vrypov/mm, optimalizovanými na vlnové dĺžky 250~nm, 500~nm a 1250~nm. Medzi mriežkami prepína automaticky podľa nastavenej vlnovej dĺžky, a to pri 400~nm a 1000~nm. Keďže knižnica \ac{dll} od výrobcu je 32-bitová, ovládanie monochromátora beží v samostatnom 32-bitovom procese jazyka Python, s ktorým hlavný program komunikuje pomocou protokolu \ac{xml-rpc}. Na pracovisku monochromátor vyberá zo širokopásmového svetla zdroja \ac{ldls} úzke spektrálne pásmo so zadanou vlnovou dĺžkou, ktorým sa osvetľuje meraná vzorka.
+
+\subsection{Referenčné fotodetektory}
+Pri meraní responzivity potrebujeme poznať optický výkon svetla dopadajúceho na vzorku. Na tento účel používame referenčné fotodetektory so známou (kalibrovanou) spektrálnou responzivitou. Z nameraného fotoprúdu referenčného detektora vypočítame optický výkon svetla, ktorý následne porovnáme s fotoprúdom meranej vzorky. Fotoprúd referenčného detektora meriame lock-in zosilňovačom MFLI.
+
+\subsubsection{Thorlabs SM05PD2A Mounted Silicon Photodiode}
+SM05PD2A je kremíková fotodióda s osadeným senzorom typu Thorlabs FDS010, schopná snímať a konvertovať svetelný signál na fotoprúd $I_{ph}$ v rozmedzí od 200~nm do 1100~nm. Diódu je možné zapojiť do meracieho zariadenia pomocou koaxiálneho kábla s koncovkou \ac{bnc}\footfullcite{thorlabs_sm05pd2a}.
+
+\newpage
+\subsubsection{Newport 918D-UV-OD3R Photodiode Sensor}
+918D-UV-OD3R je kalibrovaný kremíkový fotodetektor so zvýšenou citlivosťou v UV oblasti, určený na meranie nízkych optických výkonov v rozsahu vlnových dĺžok od 200~nm do 1100~nm. Senzor má priemer 11,3~mm a je vybavený prepínateľným atenuátorom s optickou hustotou OD3\footfullcite{newport_918d}. K detektoru je dodaný kalibračný certifikát s krivkou responzivity (v A/W) s krokom 10~nm, a to pre meranie s atenuátorom aj bez neho. Kalibračnú krivku sme previedli do digitálnej podoby a v programe ju používame na prepočet nameraného fotoprúdu na optický výkon.
+
+\subsection{Thorlabs ELL22 Motorized Neutral Density Filter Wheel Mount}
+ELL22 je motorizovaný držiak filtra\footfullcite{thorlabs_ell22}. V rámci nášho merania je držiak osadený kontinuálnym filtrom NDC-50C-4\footfullcite{thorlabs_ndc_50c_4}, ktorý dokáže v reálnom čase upravovať výkon (intenzitu) prechádzajúceho svetla. V našom prípade so zariadením komunikujeme pomocou rozšírenia Thorlabs ELLC2\footfullcite{thorlabs_ellc2}, ktoré obsahuje rozhranie \ac{usb}, cez ktoré komunikácia prebieha. Na automatizáciu v Pythone sme využili knižnicu pylablib\footfullcite{pylablib}, ktorá obsahuje vysokoúrovňové funkcie, ktoré zjednodušujú automatizáciu.
+
+\newpage
+\subsection{Thorlabs FW102C 6-position Filter Wheel}
+FW102C je motorizované filtrové koleso so 6 pozíciami pre optické filtre s priemerom 25~mm\footfullcite{thorlabs_fw102c}. Pre účely merania sú na jednotlivých pozíciách osadené nasledujúce dlhovlnné priepustné filtre (angl. \textit{longpass}):
+
+\begin{itemize}
+    \item Pozícia 1: Bez filtra, 100~\% prechod svetla
+    \item Pozícia 2: FGL280 \O25~mm N-WG280 Colored Glass Filter, 280~nm Longpass
+    \item Pozícia 3: FGL435 \O25~mm GG435 Colored Glass Filter, 435~nm Longpass
+    \item Pozícia 4: FGL530 \O25~mm OG530 Colored Glass Filter, 530~nm Longpass
+    \item Pozícia 5: FGL695 \O25~mm RG695 Colored Glass Filter, 695~nm Longpass
+    \item Pozícia 6: SM1PL Externally SM1-Threaded Plug (100~\% zakrytie svetla)
+\end{itemize}
+
+Filtre slúžia na odfiltrovanie nežiaducich kratších vlnových dĺžok (napr. vyšších difrakčných rádov monochromátora). Program pri každej zmene vlnovej dĺžky automaticky natočí koleso na vhodnú pozíciu: pod 290~nm na pozíciu 1, od 290~nm na pozíciu 2, od 445~nm na pozíciu 3, od 545~nm na pozíciu 4 a od 720~nm na pozíciu 5. So zariadením komunikujeme cez rozhranie \ac{usb} (virtuálny sériový port) pomocou knižnice pylablib\footfullcite{pylablib}.
+
+\newpage
+\subsection{Thorlabs MC2000B Optical Chopper}
+MC2000B je precízny optický svetelný chopper určený na moduláciu svetelného zväzku na danú frekvenciu. Kontinuálny zdroj svetla sa tak po prejdení chopperom mení na svetelné pulzy s určenou frekvenciou. Na MC2000B je možné osadiť rôzne typy clôn (angl. \textit{blade}) s danými parametrami. Pre účely merania sme použili clonu typu MC1F10HP s frekvenčným rozsahom $20$~Hz -- $1$~kHz\footfullcite{thorlabs_mc2000b}. So zariadením je možné komunikovať cez rozhranie \ac{usb} pomocou knižnice mc2000b v jazyku Python\footfullcite{mc2000b_docs}. Modulácia svetla umožňuje následné synchrónne meranie fotoprúdu lock-in zosilňovačmi MFLI na frekvencii choppera.
+
+\subsection{Zurich Instruments MFLI Lock-In Amplifier 500~kHz}
+MFLI je digitálny lock-in zosilňovač s frekvenčným rozsahom od DC do 500~kHz (po rozšírení až do 5~MHz). Na prednom paneli obsahuje jeden prúdový a jeden diferenciálny napäťový signálový vstup a vstupný signál digitalizuje 16-bitovým prevodníkom so vzorkovacou frekvenciou 60~MSa/s\footfullcite{zurich_mfli}. Lock-in zosilňovač z meraného signálu vyberá iba zložku s frekvenciou referenčného signálu (v našom prípade frekvenciou choppera), čím potláča šum a jednosmerné pozadie signálu, napríklad temný prúd fotodetektora.
+
+Na pracovisku používame dva prístroje MFLI: jeden meria fotoprúd referenčného detektora a druhý fotoprúd meranej vzorky. Aby boli obidve merania časovo zosúladené, prístroje sú synchronizované funkciou \ac{mds}, ktorá vyžaduje ich prepojenie synchronizačnými káblami. S počítačom komunikujú cez sieťové rozhranie Ethernet (1GbE) prostredníctvom dátového servera softvéru LabOne. V jazyku Python ich ovládame pomocou knižnice zhinst-toolkit\footfullcite{zhinst_toolkit}, ktorá umožňuje nastavovať parametre prístroja (napr. časovú konštantu a rád filtra demodulátora či rozsah prúdového vstupu) a čítať namerané dáta.
+
+\newpage
+\section{Voltampérová charakteristika}
+\subsection{Teoretický úvod}
+\subsection{Použité meracie prístroje}
+\subsection{Automatizácia merania a používateľské rozhranie}
+\subsection{Praktická ukážka}
+\subsection{Sumár merania}
+
+\newpage
+\section{Responzivita fotodetektorov}
+\subsection{Teoretický úvod}
+\subsection{Použité meracie prístroje}
+\subsection{Automatizácia merania a používateľské rozhranie}
+\subsection{Praktická ukážka}
+\subsection{Sumár merania}
+
+\newpage
+\section{CPM -- Metóda konštantného fotoprúdu}
+\subsection{Teoretický úvod}
+\subsection{Použité meracie prístroje}
+\subsection{Automatizácia merania a používateľské rozhranie}
+\subsection{Praktická ukážka}
+\subsection{Sumár merania}
+
+
+% -- ZÁVER --
+\newpage
+\section{Záver}
+% Sem príde zhrnutie, zovšeobecnenie, hodnotenie, prínos, návrh riešení a odporúčania do budúcnosti.
+
+% -- BIBLIOGRAFIA --
+\newpage
+\printbibliography[title={Zoznam použitej literatúry}]
+
+% -- PRÍLOHY --
+\newpage
+\section*{Prílohy}
+\addcontentsline{toc}{section}{Prílohy} 
+
+\subsection*{Príloha A: Schéma zapojenia prístrojov}
+\begin{figure}[htbp]
+    \centering
+    % Odkomentuj tento riadok a uprav názov súboru, keď nahráš obrázok
+    % \includegraphics[width=0.8\textwidth]{schema_zapojenia.png}
+    \caption{Detailná schéma prepojenia pikoampérmetra a Lock-In zosilňovača.}
+    \label{fig:schema_zapojenia}
+\end{figure}
+
+\end{document}
